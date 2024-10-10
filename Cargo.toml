@@ -64,7 +64,7 @@ prometheus = "0.13.4"
 blst = "0.3.11"
 tree_hash = "0.8"
 tree_hash_derive = "0.8"
-eth2_keystore = { git = "https://github.com/sigp/lighthouse", rev = "9e12c21f268c80a3f002ae0ca27477f9f512eb6f" }
+eth2_keystore = { git = "https://github.com/sigp/lighthouse", tag = "v5.3.0" }
 k256 = "0.13"
 
 # docker
