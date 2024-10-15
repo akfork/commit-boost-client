@@ -1,4 +1,5 @@
 use alloy::rpc::types::beacon::{constants::BLS_DST_SIG, BlsPublicKey, BlsSignature};
+use tracing::info;
 use tree_hash::TreeHash;
 use tree_hash_derive::TreeHash;
 
@@ -85,6 +86,10 @@ pub fn sign_commit_boost_root(
 ) -> BlsSignature {
     let domain = compute_domain(chain, COMMIT_BOOST_DOMAIN);
     let signing_root = compute_signing_root(object_root, domain);
+    info!(
+        "chain: {:?}, domain: {:?}, signing_root: {:?}, object_root: {:?}, secret_key: {:?}",
+        chain, domain, signing_root, object_root, secret_key
+    );
     sign_message(secret_key, &signing_root)
 }
 

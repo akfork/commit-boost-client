@@ -17,6 +17,7 @@ use cb_common::{
 };
 use derive_more::derive::Deref;
 use eyre::OptionExt;
+use tracing::info;
 use tree_hash::TreeHash;
 
 use crate::error::SignerModuleError;
@@ -132,6 +133,12 @@ impl SigningManager {
             .consensus_signers
             .get(pubkey)
             .ok_or(SignerModuleError::UnknownConsensusSigner(pubkey.to_vec()))?;
+        info!(
+            "pubkey: {:?}, object_root: {:?}, seckey: {:?}",
+            pubkey,
+            object_root,
+            signer.seckey()
+        );
         let signature = signer.sign(self.chain, *object_root).await;
 
         Ok(signature)
