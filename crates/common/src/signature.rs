@@ -44,6 +44,10 @@ pub fn compute_domain(chain: Chain, domain_mask: [u8; 4]) -> [u8; 32] {
     let fork_data_root = fd.tree_hash_root();
 
     domain[4..].copy_from_slice(&fork_data_root[..28]);
+    info!(
+        "domain_mask: {:?}, signing domain: {:?}, fork_version: {:?}, fd: {:?}, fork_data_root: {:?}",
+        domain_mask, domain, fork_version, fd, fork_data_root
+    );
 
     domain
 }
